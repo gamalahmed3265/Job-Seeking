@@ -23,7 +23,8 @@ const userScahma=new mongoose.Schema({
         type:String,
         require:[true,"Please Provide Your Password!"],
         minLength:[3,"Password Must Contain at least 3 Characters"],
-        maxLength:[30,"Password Connect`t exceed 30 Characters"]
+        maxLength:[30,"Password Connect`t exceed 30 Characters"],
+        select:false
     },
     role:{
         type:String,
@@ -62,3 +63,6 @@ userScahma.methods.getJWTToken=function(){
     
     )
 }
+
+
+export const userModel=mongoose.model("User",userScahma)
