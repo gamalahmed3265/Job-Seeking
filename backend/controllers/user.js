@@ -1,6 +1,6 @@
 import { catchAsyncError } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/error.js";
-import { userModel } from "../models/user.js";
+import { UserModel } from "../models/user.js";
 import { sendToken } from "../utils/jwtToken.js";
 
 export const register=catchAsyncError(async(req,res,next)=>{
@@ -8,14 +8,14 @@ export const register=catchAsyncError(async(req,res,next)=>{
     if(!name || !email || !password || !role || !phone){
         return next(new ErrorHandler("Please Full Register Form"))
     }
-    const isEmail=await userModel.findOne({
+    const isEmail=await UserModel.findOne({
         email
     })
 
     if (isEmail){
         return next(new ErrorHandler("Email aready exists!"))
     }
-    const user=await userModel.create({
+    const user=await UserModel.create({
         name,
         email,
         password,
@@ -32,7 +32,7 @@ export const login=catchAsyncError(async(req,res,next)=>{
         return next(new ErrorHandler("Please Provide email,password and role",400))
     }
     
-    const user=await userModel.findOne({
+    const user=await UserModel.findOne({
         email
     }).select("+password");
     if(!user){

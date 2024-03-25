@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import userRouter from "./route/userRouter.js"
 import applicationRouter from "./route/applicationRouter.js"
-import jopRouter from "./route/jopRouter.js"
+import jobRouter from "./route/jobRouter.js"
 import { dbConnection } from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 
@@ -29,7 +29,7 @@ app.use(fileUpload({
 
 app.use("/api/v1/user",userRouter)
 app.use("/api/v1/application",applicationRouter)
-app.use("/api/v1/jop",jopRouter)
+app.use("/api/v1/job",jobRouter)
 
 dbConnection()
 

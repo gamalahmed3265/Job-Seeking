@@ -3,12 +3,12 @@ import validator from "validator";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
 
-const userScahma=new mongoose.Schema({
+const UserScahma=new mongoose.Schema({
     name:{
         type:String,
         required:[true,"Please Provide Your name1"],
         minLength:[3,"Name Must Contain at least 3 Characters"],
-        maxLength:[30,"Name Connect`t exceed 30 Characters"]
+        maxLength:[30,"Name Con`t exceed 30 Characters"]
     },
     email:{
         type:String,
@@ -23,7 +23,7 @@ const userScahma=new mongoose.Schema({
         type:String,
         require:[true,"Please Provide Your Password!"],
         minLength:[3,"Password Must Contain at least 3 Characters"],
-        maxLength:[30,"Password Connect`t exceed 30 Characters"],
+        maxLength:[30,"Password Con`t exceed 30 Characters"],
         select:false
     },
     role:{
@@ -39,7 +39,7 @@ const userScahma=new mongoose.Schema({
 
 // Hashing The Password
 
-userScahma.pre("save",async function (next){
+UserScahma.pre("save",async function (next){
     if(!this.isModified("password")){
         next()
     }
@@ -48,13 +48,13 @@ userScahma.pre("save",async function (next){
 
 // Comparing Password
 
-userScahma.methods.comparePassword=async function(enteredPassword){
+UserScahma.methods.comparePassword=async function(enteredPassword){
     return await bcrypt.compare(enteredPassword,this.password)
 }
 
 // Genrate JWT TOKEN FOR AUTHORIZED
 
-userScahma.methods.getJWTToken=function(){
+UserScahma.methods.getJWTToken=function(){
     return jwt.sign({
         id: this._id
     },process.env.JWT_SECURE_KEY,{
@@ -65,4 +65,4 @@ userScahma.methods.getJWTToken=function(){
 }
 
 
-export const userModel=mongoose.model("User",userScahma)
+export const UserModel=mongoose.model("User",UserScahma)
