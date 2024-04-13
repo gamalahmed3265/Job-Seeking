@@ -19,25 +19,25 @@ import MyJobs from "./components/Job/MyJobs";
 
 const App = () => {
     const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-    // useEffect(() => {
-    //     const fetchUser = async () => {
-    //       try {
-    //         const response = await axios.get(
-    //         //   "http://localhost:4000/api/v1/user/getUser",
-    //           "http://localhost:8080/api/v1/user/getUser",
-    //           {
-    //             withCredentials: true,
-    //           }
-    //         );
-    //         console.log(response);
-    //         setUser(response.data.user);
-    //         setIsAuthorized(true);
-    //       } catch (error) {
-    //         setIsAuthorized(false);
-    //       }
-    //     };
-    //     fetchUser();
-    //   }, [isAuthorized]);
+    useEffect(() => {
+        const fetchUser = async () => {
+          try {
+            const response = await axios.get(
+              "http://localhost:8080/api/v1/user/getUser",
+              {
+                withCredentials: true,
+              }
+            );
+            console.log(response);
+            setUser(response.data.user);
+            setIsAuthorized(true);
+          } catch (error) {
+            console.log("error"+error);
+            setIsAuthorized(false);
+          }
+        };
+        fetchUser();
+      }, [isAuthorized]);
     
   return (
     <>

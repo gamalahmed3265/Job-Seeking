@@ -1294,9 +1294,6 @@ nav .hamburger {
 .notfound {
   min-height: 750px;
 }
-.notfound img{
-  width: 100px;
-}
 .notfound .content {
   display: flex;
   flex-direction: column;
