@@ -46,7 +46,7 @@ export const postJob=catchAsyncError(async (req,res,next)=>{
     }
     if((!salaryFrom||!salaryTo) && !fixedSalary){
             return next(
-                ErrorHandler("Please either provide fixed Salary or ranged salary")
+                new ErrorHandler("Please either provide fixed Salary or ranged salary")
             )
     }
     if(salaryFrom && salaryTo && fixedSalary){

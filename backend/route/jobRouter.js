@@ -7,7 +7,7 @@ const router=express.Router();
 router.get("/getAll",getAllJobs)
 router.post("/postJob",isAuthorized,postJob)
 router.get("/getMyJobs",isAuthorized,getMyJobs)
-router.get("/getSingleJob/:id",isAuthorized,getSingleJob)
+router.get("/:id",isAuthorized,getSingleJob)
 router.put("/updateJob/:id",isAuthorized,updateJob)
 router.delete("/deleteJob/:id",isAuthorized,DeleteJob)
 
