@@ -89,6 +89,22 @@ export const getMyJobs=catchAsyncError(async(req,res,next)=>{
         myJobs,
     })
 });
+export const getSingleJob=catchAsyncError(async(req,res,next)=>{
+    const {id}=req.params;
+    try {
+        const job=await JobModel.findById(id);
+        if(!job){
+            return next(new ErrorHandler("Job Not Found",404))
+        }
+        res.status(200).json({
+            success:true,
+            job,
+        })
+        
+    } catch (error) {
+        return next(new ErrorHandler("Invalid ID/ Cast Error",400))
+    }
+});
 export const updateJob=catchAsyncError(async(req,res,next)=>{
     const {id}=req.params;
 
